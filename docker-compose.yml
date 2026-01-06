@@ -1,0 +1,84 @@
+version: '3.8'
+
+services:
+  # MySQL数据库服务
+  mysql:
+    image: mysql:8.0
+    container_name: interior_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-RootPass123!}
+      MYSQL_DATABASE: ${DB_NAME:-interior_design}
+      MYSQL_USER: ${DB_USER:-design_user}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-DesignPass123!}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    networks:
+      - interior_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  # 后端API服务
+  backend:
+    build: ./backend
+    container_name: interior_backend
+    restart: always
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      DB_HOST: mysql
+      DB_NAME: ${DB_NAME:-interior_design}
+      DB_USER: ${DB_USER:-design_user}
+      DB_PASSWORD: ${DB_PASSWORD:-DesignPass123!}
+      SECRET_KEY: ${SECRET_KEY:-your-secret-key-here}
+    volumes:
+      - ./backend:/app
+    ports:
+      - "5000:5000"
+    networks:
+      - interior_network
+    command: gunicorn --bind 0.0.0.0:5000 app:app
+
+  # 前端网站服务
+  frontend:
+    build: ./frontend
+    container_name: interior_frontend
+    restart: always
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+    ports:
+      - "8080:80"
+    networks:
+      - interior_network
+    depends_on:
+      - backend
+
+  # Nginx反向代理
+  nginx:
+    build: ./nginx
+    container_name: interior_nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./frontend:/usr/share/nginx/html
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - interior_network
+
+networks:
+  interior_network:
+    driver: bridge
+
+volumes:
+  mysql_data:

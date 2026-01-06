@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雅致室内设计 - 专业装修服务</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="/">
+                    <i class="fas fa-home"></i>
+                    <span>雅致室内设计</span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#services">服务</a></li>
+                <li><a href="#cases">案例</a></li>
+                <li><a href="#designers">设计师</a></li>
+                <li><a href="#about">关于我们</a></li>
+                <li><a href="#contact">联系我们</a></li>
+                <li><button class="btn-primary" onclick="showAppointmentModal()">免费咨询</button></li>
+            </ul>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页横幅 -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>打造梦想家居空间</h1>
+                <p>专业室内设计团队，10年行业经验，为您提供一站式装修解决方案</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="showAppointmentModal()">立即预约</button>
+                    <button class="btn-secondary" onclick="scrollToSection('cases')">查看案例</button>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <h3>500+</h3>
+                    <p>成功案例</p>
+                </div>
+                <div class="stat-item">
+                    <h3>50+</h3>
+                    <p>专业设计师</p>
+                </div>
+                <div class="stat-item">
+                    <h3>10年</h3>
+                    <p>行业经验</p>
+                </div>
+                <div class="stat-item">
+                    <h3>98%</h3>
+                    <p>客户满意度</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务项目 -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">我们的服务</h2>
+            <p class="section-subtitle">提供全方位的室内设计装修服务</p>
+            <div class="services-grid" id="services-container">
+                <!-- 服务项目将通过JS动态加载 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 精选案例 -->
+    <section id="cases" class="cases">
+        <div class="container">
+            <h2 class="section-title">精选案例</h2>
+            <p class="section-subtitle">探索我们最新的设计作品</p>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-style="all">全部</button>
+                <button class="filter-btn" data-style="modern">现代简约</button>
+                <button class="filter-btn" data-style="classical">欧式古典</button>
+                <button class="filter-btn" data-style="industrial">工业风</button>
+                <button class="filter-btn" data-style="japanese">日式</button>
+            </div>
+            <div class="cases-grid" id="cases-container">
+                <!-- 案例将通过JS动态加载 -->
+            </div>
+            <div class="text-center">
+                <button class="btn-secondary" onclick="loadMoreCases()">加载更多</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 设计师团队 -->
+    <section id="designers" class="designers">
+        <div class="container">
+            <h2 class="section-title">设计师团队</h2>
+            <p class="section-subtitle">与我们的专业设计师合作</p>
+            <div class="designers-grid" id="designers-container">
+                <!-- 设计师将通过JS动态加载 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 预约表单弹窗 -->
+    <div id="appointmentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAppointmentModal()">&times;</span>
+            <h2>预约免费咨询</h2>
+            <form id="appointmentForm">
+                <div class="form-group">
+                    <input type="text" id="clientName" placeholder="您的姓名" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="clientPhone" placeholder="联系电话" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="clientEmail" placeholder="电子邮箱">
+                </div>
+                <div class="form-group">
+                    <select id="serviceType" required>
+                        <option value="">选择服务类型</option>
+                        <option value="咨询">设计咨询</option>
+                        <option value="全包">全包装修</option>
+                        <option value="改造">局部改造</option>
+                        <option value="软装">软装设计</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="projectType">
+                        <option value="">项目类型</option>
+                        <option value="住宅">住宅</option>
+                        <option value="办公室">办公室</option>
+                        <option value="商业">商业空间</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" placeholder="请简要描述您的需求..." rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn-primary">提交预约</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>雅致室内设计</h3>
+                    <p>专业室内设计与装修服务</p>
+                    <p><i class="fas fa-phone"></i> 400-123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@interiordesign.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 北京市朝阳区设计大厦18层</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#services">服务项目</a></li>
+                        <li><a href="#cases">设计案例</a></li>
+                        <li><a href="#designers">设计师</a></li>
+                        <li><a href="#about">关于我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>服务时间</h3>
+                    <p>周一至周五: 9:00 - 18:00</p>
+                    <p>周六: 10:00 - 16:00</p>
+                    <p>周日: 休息</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 雅致室内设计. 版权所有.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
