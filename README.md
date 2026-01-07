@@ -43,7 +43,7 @@ docker-compose down
 docker system prune -f
 docker-compose build --no-cache
 docker-compose up -d
-
+```
 - Check the backend logs
 ```shell
 docker logs --tail 50 interior_backend
