@@ -2,6 +2,10 @@
 
 In this tutorial, I will use a standalone alibaba ECS server to deploy a website including frontend, backend, database.
 
+## Project-Architecture
+
+![architecture](./architecture.png)
+
 ## Usage
 
 - As we know, docker hub was blocked in China, so I need to configure Docker Hub image accelerator on my ECS server.
@@ -63,3 +67,21 @@ interior_nginx      /docker-entrypoint.sh ngin ...   Up             0.0.0.0:443-
 ```shell
 curl http://localhost:5000/api/health
 ```
+- Test the root api endpoint
+```shell
+curl http://localhost:5000/api
+```
+- Test service api list
+```shell
+curl http://localhost:5000/api/services
+```
+- Test api cases
+```shell
+curl http://localhost:5000/api/cases
+```
+- visit the frontend website
+```shell
+curl http://localhost:8080
+```
+
+
