@@ -2,8 +2,10 @@ from flask import Flask
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
-from .models import db
-from .config import Config
+
+# 使用绝对导入，不要使用相对导入
+from models import db
+from config import Config
 
 def create_app():
     app = Flask(__name__)
@@ -25,7 +27,8 @@ app = create_app()
 
 # 这里导入routes并注册路由
 # 注意：必须在app创建后导入
-from .routes import *
+# 使用绝对导入，不要使用相对导入
+from routes import *
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

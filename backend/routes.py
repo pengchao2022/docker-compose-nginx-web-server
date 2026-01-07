@@ -2,10 +2,12 @@ from flask import request, jsonify
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
-from .models import db, User, DesignCase, Designer, Service, Appointment, Review, BlogPost
 
-# 从app模块导入app实例
-from .app import app
+# 使用绝对导入，不要使用相对导入
+from models import db, User, DesignCase, Designer, Service, Appointment, Review, BlogPost
+
+# 从app模块导入app实例 - 使用绝对导入
+from app import app
 
 # 辅助函数
 def allowed_file(filename):

@@ -5,7 +5,7 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-secret-key-change-in-production'
     
     # 数据库配置
-    DB_HOST = os.environ.get('DB_HOST', 'localhost')
+    DB_HOST = os.environ.get('DB_HOST', 'mysql')
     DB_NAME = os.environ.get('DB_NAME', 'interior_design')
     DB_USER = os.environ.get('DB_USER', 'design_user')
     DB_PASSWORD = os.environ.get('DB_PASSWORD', 'DesignPass123!')

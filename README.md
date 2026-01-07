@@ -33,4 +33,18 @@ docker info | grep -A 2 Mirrors
    ```
 
 
+- Rebuild and remove all docker-compose include images
+```shell
+docker-compose down -v --rmi all
+```
+- Or you can clear and rebuild from the following steps
+```shell
+docker-compose down
+docker system prune -f
+docker-compose build --no-cache
+docker-compose up -d
 
+- Check the backend logs
+```shell
+docker logs --tail 50 interior_backend
+```
