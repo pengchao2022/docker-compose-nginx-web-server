@@ -48,3 +48,18 @@ docker-compose up -d
 ```shell
 docker logs --tail 50 interior_backend
 ```
+- Check the container status
+```shell
+docker-compose-nginx-web-serve-alibaba-cloud$ docker-compose ps
+      Name                     Command                  State                                       Ports                                 
+------------------------------------------------------------------------------------------------------------------------------------------
+interior_backend    gunicorn --bind 0.0.0.0:50 ...   Up             0.0.0.0:5000->5000/tcp,:::5000->5000/tcp                              
+interior_frontend   /docker-entrypoint.sh ngin ...   Up             0.0.0.0:8080->80/tcp,:::8080->80/tcp                                  
+interior_mysql      docker-entrypoint.sh mysqld      Up (healthy)   0.0.0.0:3306->3306/tcp,:::3306->3306/tcp, 33060/tcp                   
+interior_nginx      /docker-entrypoint.sh ngin ...   Up             0.0.0.0:443->443/tcp,:::443->443/tcp, 0.0.0.0:80->80/tcp,:::80->80/tcp
+
+```
+- Test the health check
+```shell
+curl http://localhost:5000/api/health
+```
