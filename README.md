@@ -84,4 +84,21 @@ curl http://localhost:5000/api/cases
 curl http://localhost:8080
 ```
 
+## SSL CA check
+
+- Use this command to check the SSL ca certification 
+```shell
+ecs-user@iZ0jlf7atzu52g2uhx3spdZ:~/web-server/docker-compose-nginx-web-serve-alibaba-cloud$ openssl s_client -connect 8.130.119.137:443 -servername awsmpc.asia <<< "Q" | openssl x509 -noout -text | grep -A1 "Subject:"
+depth=2 C = US, O = DigiCert Inc, OU = www.digicert.com, CN = DigiCert Global Root G2
+verify return:1
+depth=1 C = US, O = DigiCert Inc, OU = www.digicert.com, CN = Encryption Everywhere DV TLS CA - G2
+verify return:1
+depth=0 CN = awsmpc.asia
+verify return:1
+DONE
+        Subject: CN = awsmpc.asia
+        Subject Public Key Info:
+
+```
+
 
