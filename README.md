@@ -101,4 +101,11 @@ DONE
 
 ```
 
+## Website Home page
+
+- This is the website home page and has SSL encription
+
+![home_page](./home_page.png)
+
+
 
