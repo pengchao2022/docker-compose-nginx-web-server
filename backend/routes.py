@@ -355,7 +355,7 @@ def health_check():
     try:
         # 测试数据库连接
         from sqlalchemy import text
-        db.session.execute('SELECT 1')
+        db.session.execute(text('SELECT 1'))
         return jsonify({
             'status': 'healthy',
             'database': 'connected',
