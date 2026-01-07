@@ -36,7 +36,7 @@ services:
       DB_NAME: ${DB_NAME:-interior_design}
       DB_USER: ${DB_USER:-design_user}
       DB_PASSWORD: ${DB_PASSWORD:-DesignPass123!}
-      SECRET_KEY: ${SECRET_KEY:-your-secret-key-here}
+      SECRET_KEY: ${SECRET_KEY:-Q6lLT547EWNpcOCJHZHu4uL2Hcd7W6OVAOgwbJjVmMI}
     volumes:
       - ./backend:/app
     ports:
